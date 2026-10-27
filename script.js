@@ -1,113 +1,222 @@
+"use strict";
+
+// ============================================
+// ENTRE NOSOTROS — CONFIGURACIÓN DE SUPABASE
+// ============================================
+
+const SUPABASE_URL = "https://rhsfeefsutzwprhpemve.supabase.co";
+
+// IMPORTANTE: pega aquí tu Publishable key de Supabase.
+const SUPABASE_PUBLISHABLE_KEY = "PEGA_AQUI_TU_PUBLISHABLE_KEY";
+
+// ============================================
+// MENÚ DE NAVEGACIÓN
+// ============================================
+
 const menuToggle = document.getElementById("menuToggle");
 const mainNav = document.getElementById("mainNav");
 
-menuToggle.addEventListener("click", () => {
-  const isOpen = mainNav.classList.toggle("open");
-  menuToggle.setAttribute("aria-expanded", String(isOpen));
-  menuToggle.textContent = isOpen ? "×" : "☰";
-});
+if (menuToggle && mainNav) {
+  menuToggle.addEventListener("click", () => {
+    const isOpen = mainNav.classList.toggle("open");
 
-mainNav.querySelectorAll("a").forEach(link => {
-  link.addEventListener("click", () => {
-    mainNav.classList.remove("open");
-    menuToggle.setAttribute("aria-expanded", "false");
-    menuToggle.textContent = "☰";
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.textContent = isOpen ? "×" : "☰";
   });
-});
 
-// Actividad de reflexión: muestra una respuesta distinta según la opción elegida.
+  mainNav.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      mainNav.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.textContent = "☰";
+    });
+  });
+}
+
+// ============================================
+// ACTIVIDAD: PONTE EN MI LUGAR
+// ============================================
+
 const choices = document.querySelectorAll(".choice");
 const scenarioFeedback = document.getElementById("scenarioFeedback");
+
 choices.forEach(choice => {
   choice.addEventListener("click", () => {
     choices.forEach(item => {
       item.classList.remove("selected");
       item.setAttribute("aria-pressed", "false");
     });
+
     choice.classList.add("selected");
     choice.setAttribute("aria-pressed", "true");
-    scenarioFeedback.textContent = choice.dataset.feedback;
+
+    if (scenarioFeedback) {
+      scenarioFeedback.textContent = choice.dataset.feedback || "";
+    }
   });
 });
 
-// CONEXIÓN CON SUPABASE
-// Reemplaza estos dos valores por los de TU proyecto. Usa solo la Publishable key,
-// nunca una clave Secret o service_role en el navegador.
-const SUPABASE_URL = "https://rhsfeefsutzwprhpemve.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_hLrOBXju6U4IZTrsFdjOrA_rUn4IieF";
+// ============================================
+// ENCUESTA CONECTADA A SUPABASE
+// ============================================
 
-// Guarda la respuesta anónima de la encuesta en la tabla public.encuestas.
 const surveyForm = document.getElementById("surveyForm");
-surveyForm.addEventListener("submit", async event => {
-  event.preventDefault();
-  const selected = document.querySelector('input[name="respect"]:checked');
-  const message = document.getElementById("surveyMessage");
-  const submitButton = surveyForm.querySelector('button[type="submit"]');
+const surveyMessage = document.getElementById("surveyMessage");
 
-  if (!selected) {
-    message.textContent = "Selecciona una respuesta para continuar.";
-    return;
-  }
+if (surveyForm && surveyMessage) {
+  surveyForm.addEventListener("submit", async event => {
+    event.preventDefault();
 
-  if (SUPABASE_URL.startsWith("PEGA_AQUI") || SUPABASE_PUBLISHABLE_KEY.startsWith("PEGA_AQUI")) {
-    message.textContent = "Falta configurar la URL y la Publishable key de Supabase en script.js.";
-    return;
-  }
+    const selected = surveyForm.querySelector(
+      'input[name="respect"]:checked'
+    );
 
-  submitButton.disabled = true;
-  message.textContent = "Enviando tu respuesta…";
+    const submitButton = surveyForm.querySelector(
+      'button[type="submit"]'
+    );
 
-  try {
-    const response = await fetch(${SUPABASE_URL.replace(/\/$/, "")}/rest/v1/encuestas, {
-      method: "POST",
-      headers: {
-        "apikey": SUPABASE_PUBLISHABLE_KEY,
-        "Authorization": `Bearer ${SUPABASE_PUBLISHABLE_KEY}`,
-        "Content-Type": "application/json",
-        "Prefer": "return=minimal"
-      },
-      body: JSON.stringify({ respuesta: selected.value })
-    });
-
-    if (!response.ok) {
-      const details = await response.text();
-      console.error("Supabase respondió con un error:", response.status, details);
-      throw new Error("No se pudo guardar la respuesta. Revisa la tabla, las políticas y las credenciales.");
+    if (!selected) {
+      surveyMessage.textContent =
+        "Selecciona una respuesta para continuar.";
+      return;
     }
 
-    message.textContent = "¡Gracias! Tu respuesta se guardó correctamente.";
-    surveyForm.reset();
-  } catch (error) {
-    console.error(error);
-    message.textContent = "No pudimos guardar tu respuesta. Comprueba la conexión y la configuración de Supabase e inténtalo de nuevo.";
-  } finally {
-    submitButton.disabled = false;
-  }
-});
+    if (
+      !SUPABASE_URL ||
+      SUPABASE_URL.includes("PEGA_AQUI") ||
+      !SUPABASE_PUBLISHABLE_KEY ||
+      SUPABASE_PUBLISHABLE_KEY.includes("PEGA_AQUI")
+    ) {
+      surveyMessage.textContent =
+        "Falta configurar la conexión con Supabase.";
+      console.error(
+        "Configura SUPABASE_URL y SUPABASE_PUBLISHABLE_KEY en script.js."
+      );
+      return;
+    }
 
-// Contador y confirmación local para propuestas.
+    submitButton.disabled = true;
+    surveyMessage.textContent = "Guardando tu respuesta…";
+
+    try {
+      const response = await fetch(
+        ${SUPABASE_URL}/rest/v1/encuestas,
+        {
+          method: "POST",
+
+          headers: {
+            "apikey": SUPABASE_PUBLISHABLE_KEY,
+            "Authorization": Bearer ${SUPABASE_PUBLISHABLE_KEY},
+            "Content-Type": "application/json",
+            "Prefer": "return=minimal"
+          },
+
+          body: JSON.stringify({
+            respuesta: selected.value
+          })
+        }
+      );
+
+      if (!response.ok) {
+        const errorDetails = await response.text();
+
+        console.error("Error de Supabase:", {
+          status: response.status,
+          details: errorDetails
+        });
+
+        if (response.status === 401 || response.status === 403) {
+          throw new Error(
+            "Supabase rechazó la petición. Revisa la clave y los permisos."
+          );
+        }
+
+        if (response.status === 404) {
+          throw new Error(
+            "No se encontró la tabla o la ruta de la API. Revisa public.encuestas."
+          );
+        }
+
+        throw new Error(
+          No se pudo guardar la respuesta (HTTP ${response.status}).
+        );
+      }
+
+      surveyMessage.textContent =
+        "¡Gracias! Tu respuesta se guardó correctamente.";
+
+      surveyForm.reset();
+
+    } catch (error) {
+      console.error("No se pudo guardar la encuesta:", error);
+
+      surveyMessage.textContent =
+        error.message ||
+        "No pudimos guardar tu respuesta. Inténtalo de nuevo.";
+
+    } finally {
+      submitButton.disabled = false;
+    }
+  });
+}
+
+// ============================================
+// FORMULARIO DE PROPUESTAS
+// Sigue siendo una demostración local.
+// ============================================
+
 const proposalText = document.getElementById("proposalText");
-proposalText.addEventListener("input", () => {
-  document.getElementById("charCount").textContent = `${proposalText.value.length}/400`;
-});
-document.getElementById("proposalForm").addEventListener("submit", event => {
-  event.preventDefault();
-  const message = document.getElementById("proposalMessage");
-  if (!proposalText.value.trim()) {
-    message.textContent = "Escribe una propuesta antes de enviarla.";
-    return;
-  }
-  message.textContent = "¡Gracias por tu idea! En esta versión de muestra no se almacena ni se envía a ninguna parte.";
-  proposalText.value = "";
-  document.getElementById("charCount").textContent = "0/400";
-});
+const charCount = document.getElementById("charCount");
+const proposalForm = document.getElementById("proposalForm");
+const proposalMessage = document.getElementById("proposalMessage");
 
-// Compromiso interactivo.
-document.getElementById("pledgeButton").addEventListener("click", event => {
-  const button = event.currentTarget;
-  const message = document.getElementById("pledgeMessage");
-  const pledged = button.dataset.pledged === "true";
-  button.dataset.pledged = String(!pledged);
-  button.innerHTML = pledged ? 'Me comprometo <span>♡</span>' : '¡Me comprometo! <span>✓</span>';
-  message.textContent = pledged ? "" : "¡Gracias! Recuerda que cada acción respetuosa cuenta.";
-});
+if (proposalText && charCount) {
+  proposalText.addEventListener("input", () => {
+    charCount.textContent = ${proposalText.value.length}/400;
+  });
+}
+
+if (proposalForm && proposalText && proposalMessage) {
+  proposalForm.addEventListener("submit", event => {
+    event.preventDefault();
+
+    if (!proposalText.value.trim()) {
+      proposalMessage.textContent =
+        "Escribe una propuesta antes de enviarla.";
+      return;
+    }
+
+    proposalMessage.textContent =
+      "¡Gracias por tu idea! Esta versión todavía no guarda las propuestas.";
+
+    proposalText.value = "";
+
+    if (charCount) {
+      charCount.textContent = "0/400";
+    }
+  });
+}
+
+// ============================================
+// COMPROMISO CON LA CONVIVENCIA
+// ============================================
+
+const pledgeButton = document.getElementById("pledgeButton");
+const pledgeMessage = document.getElementById("pledgeMessage");
+
+if (pledgeButton && pledgeMessage) {
+  pledgeButton.addEventListener("click", event => {
+    const button = event.currentTarget;
+    const pledged = button.dataset.pledged === "true";
+
+    button.dataset.pledged = String(!pledged);
+
+    button.innerHTML = pledged
+      ? 'Me comprometo <span>♡</span>'
+      : '¡Me comprometo! <span>✓</span>';
+
+    pledgeMessage.textContent = pledged
+      ? ""
+      : "¡Gracias! Recuerda que cada acción respetuosa cuenta.";
+  });
+}
