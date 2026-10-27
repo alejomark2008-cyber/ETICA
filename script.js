@@ -58,7 +58,7 @@ surveyForm.addEventListener("submit", async event => {
   message.textContent = "Enviando tu respuesta…";
 
   try {
-    const response = await fetch(`${SUPABASE_URL.replace(/\/$/, "")}/rest/v1/encuestas`, {
+    const response = await fetch(${SUPABASE_URL.replace(/\/$/, "")}/rest/v1/encuestas, {
       method: "POST",
       headers: {
         "apikey": SUPABASE_PUBLISHABLE_KEY,
