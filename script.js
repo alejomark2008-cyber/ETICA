@@ -33,7 +33,7 @@ choices.forEach(choice => {
 // CONEXIÓN CON SUPABASE
 // Reemplaza estos dos valores por los de TU proyecto. Usa solo la Publishable key,
 // nunca una clave Secret o service_role en el navegador.
-const SUPABASE_URL = "https://rhsfeefsutzwprhpemve.supabase.co/rest/v1/";
+const SUPABASE_URL = "https://rhsfeefsutzwprhpemve.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_hLrOBXju6U4IZTrsFdjOrA_rUn4IieF";
 
 // Guarda la respuesta anónima de la encuesta en la tabla public.encuestas.
