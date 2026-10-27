@@ -7,7 +7,7 @@
 const SUPABASE_URL = "https://rhsfeefsutzwprhpemve.supabase.co";
 
 // IMPORTANTE: pega aquí tu Publishable key de Supabase.
-const SUPABASE_PUBLISHABLE_KEY = "PEGA_AQUI_TU_PUBLISHABLE_KEY";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_hLrOBXju6U4IZTrsFdjOrA_rUn4IieF";
 
 // ============================================
 // MENÚ DE NAVEGACIÓN
