@@ -100,7 +100,7 @@ if (surveyForm && surveyMessage) {
 
     try {
       const response = await fetch(
-        ${SUPABASE_URL}/rest/v1/encuestas,
+        `${SUPABASE_URL}/rest/v1/encuestas`,
         {
           method: "POST",
 
