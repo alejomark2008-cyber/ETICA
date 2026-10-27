@@ -1,0 +1,15 @@
+ENTRE NOSOTROS — sitio web educativo
+
+ARCHIVOS
+- index.html: contenido y estructura.
+- styles.css: diseño adaptable a computador, tableta y celular.
+- script.js: menú móvil, actividad interactiva, encuesta de demostración y compromiso.
+
+CÓMO ABRIR
+1. Descarga y descomprime entre_nosotros_web.zip.
+2. Abre index.html en un navegador moderno.
+3. Necesitas conexión a internet para cargar las fotografías de Unsplash y las fuentes de Google Fonts.
+
+IMPORTANTE
+La encuesta y el formulario de propuestas son demostraciones de front-end: no guardan ni envían respuestas a un servidor. Para recopilar respuestas reales se necesita configurar un servicio/backend y explicar a los usuarios cómo se tratarán sus datos.
+Las imágenes se cargan desde URLs de Unsplash, por lo que necesitan conexión a internet.

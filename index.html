@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f3f1">
+  <meta name="description" content="Entre Nosotros: una iniciativa digital para promover el respeto, la empatía y la convivencia escolar.">
+  <title>Entre Nosotros | Convivencia escolar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="Entre Nosotros, inicio">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="16" cy="12" r="7"/><circle cx="32" cy="12" r="7"/><path d="M24 43C10 34 5 27 9 21c4-6 11-3 15 2 4-5 11-8 15-2 4 6-1 13-15 22Z"/></svg></span>
+      <span>Entre<br>nosotros</span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav class="main-nav" id="mainNav">
+      <a class="active" href="#inicio">Inicio</a>
+      <a href="#ponte-en-mi-lugar">Ponte en mi lugar</a>
+      <a href="#convivencia">Convivencia</a>
+      <a href="#encuesta">Encuesta</a>
+      <a href="#propuestas">Propón</a>
+      <a href="#compromiso">Compromiso</a>
+    </nav>
+    <a class="header-cta" href="#compromiso">Juntos es mejor <span>↗</span></a>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-shape shape-one"></div><div class="hero-shape shape-two"></div>
+      <div class="hero-copy">
+        <p class="eyebrow">CONVIVENCIA ESCOLAR</p>
+        <h1>El respeto también<br>se construye en línea<span>.</span></h1>
+        <p class="hero-description">En <strong>Entre Nosotros</strong> creemos que una mejor convivencia empieza con pequeñas acciones. Aquí encontrarás herramientas, actividades y espacios para reflexionar, compartir y construir un colegio más respetuoso, empático e inclusivo.</p>
+        <a class="button button-primary" href="#ponte-en-mi-lugar">Explora y sé parte del cambio <span>→</span></a>
+        <div class="hero-note"><span class="note-dot"></span> Un espacio para escucharnos y mejorar juntos.</div>
+      </div>
+      <div class="hero-visual">
+        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=85" alt="Grupo de jóvenes compartiendo un momento juntos al aire libre">
+        <div class="photo-label"><span class="label-icon">♡</span><span><strong>Mejor juntos</strong><small>Pequeñas acciones, grandes cambios.</small></span></div>
+        <span class="doodle doodle-heart">♡</span><span class="doodle doodle-spark">✳</span>
+      </div>
+    </section>
+
+    <section class="values section-wrap" id="convivencia">
+      <div class="section-intro">
+        <p class="eyebrow">LO QUE NOS IMPORTA</p>
+        <h2>Valores que<br>nos unen</h2>
+        <p>La convivencia escolar se construye con valores que nos ayudan a relacionarnos mejor y a tratarnos con respeto.</p>
+      </div>
+      <article class="value-card"><span class="value-icon lavender">♧</span><h3>Respeto</h3><p>Valorar las diferencias y tratar bien a los demás.</p></article>
+      <article class="value-card"><span class="value-icon pink">♡</span><h3>Empatía</h3><p>Ponerse en el lugar del otro.</p></article>
+      <article class="value-card"><span class="value-icon blue">♧</span><h3>Igualdad</h3><p>Todos merecemos las mismas oportunidades.</p></article>
+      <article class="value-card"><span class="value-icon lilac">◇</span><h3>Dignidad</h3><p>Cada persona merece ser escuchada y valorada.</p></article>
+    </section>
+
+    <section class="empathy-section" id="ponte-en-mi-lugar">
+      <div class="empathy-layout section-wrap">
+        <div class="section-intro">
+          <p class="eyebrow">PONTE EN MI LUGAR</p>
+          <h2>¿Qué harías tú?</h2>
+          <p>Lee la situación, elige una opción y descubre cómo tus decisiones pueden hacer la diferencia.</p>
+          <div class="hand-note">Tus decisiones también construyen la convivencia <span>♡</span></div>
+        </div>
+        <div class="scenario-card">
+          <img src="https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=700&q=85" alt="Estudiante trabajando en un entorno escolar">
+          <div class="scenario-content">
+            <span class="scenario-tag">SITUACIÓN 01 · RESPETO DIGITAL</span>
+            <h3>Un compañero publica una fotografía de otro estudiante para burlarse de él. Varias personas empiezan a compartirla.</h3>
+            <p class="question">¿Qué harías?</p>
+            <div class="choices" id="choices">
+              <button class="choice" data-feedback="Compartir la imagen puede aumentar el daño. Antes de actuar, piensa cómo se sentiría la persona afectada."><span class="radio"></span>Compartirla también para no quedarme por fuera.</button>
+              <button class="choice" data-feedback="Es un buen comienzo. Puedes pedir que dejen de compartirla y buscar apoyo de un adulto de confianza si la situación continúa."><span class="radio"></span>Pedir que dejen de compartirla y buscar apoyo.</button>
+              <button class="choice" data-feedback="Apoyar a la persona afectada importa. También es útil no difundir la imagen y reportar la publicación si es posible."><span class="radio"></span>Hablar con la persona afectada y ofrecerle apoyo.</button>
+            </div>
+            <div class="feedback" id="scenarioFeedback" role="status" aria-live="polite">Elige una respuesta para ver una reflexión.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="survey-section section-wrap" id="encuesta">
+      <div class="section-intro">
+        <p class="eyebrow">TU OPINIÓN CUENTA</p>
+        <h2>Hablemos de<br>convivencia</h2>
+        <p>Queremos conocer tu opinión sobre el respeto en el colegio. Esta encuesta es anónima y sirve como actividad de reflexión.</p>
+        <span class="privacy-note">🔒 No pedimos tu nombre ni datos personales.</span>
+      </div>
+      <form class="survey-card" id="surveyForm">
+        <h3>¿Consideras que existe respeto entre los estudiantes?</h3>
+        <label class="radio-row"><input type="radio" name="respect" value="Sí, la mayoría se respeta." required> Sí, la mayoría se respeta.</label>
+        <label class="radio-row"><input type="radio" name="respect" value="A veces, hay situaciones de falta de respeto."> A veces, hay situaciones de falta de respeto.</label>
+        <label class="radio-row"><input type="radio" name="respect" value="No, hay muchos conflictos."> No, hay muchos conflictos.</label>
+        <label class="radio-row"><input type="radio" name="respect" value="No estoy seguro/a."> No estoy seguro/a.</label>
+        <button class="button button-primary small-button" type="submit">Enviar mi respuesta <span>→</span></button>
+        <p class="form-message" id="surveyMessage" role="status"></p>
+        <p class="demo-note">Demostración: las respuestas no se guardan en un servidor.</p>
+      </form>
+      <div class="survey-art" aria-hidden="true"><div class="bars"><i></i><i></i><i></i><i></i></div><p>Tu opinión<br>importa <span>〰</span></p></div>
+    </section>
+
+    <section class="proposal-section" id="propuestas">
+      <div class="proposal-layout section-wrap">
+        <div class="section-intro">
+          <p class="eyebrow">PROPÓN UNA SOLUCIÓN</p>
+          <h2>¿Cómo podemos<br>mejorar?</h2>
+          <p>Cuéntanos una idea para hacer de nuestro colegio un lugar más respetuoso, seguro e inclusivo.</p>
+        </div>
+        <form class="proposal-form" id="proposalForm">
+          <label class="sr-only" for="proposalText">Escribe tu propuesta</label>
+          <textarea id="proposalText" maxlength="400" placeholder="Escribe aquí tu propuesta..." required></textarea>
+          <div class="form-bottom"><span id="charCount">0/400</span><button class="button button-primary" type="submit">Enviar propuesta <span>➤</span></button></div>
+          <p class="form-message" id="proposalMessage" role="status"></p>
+          <p class="demo-note">No incluyas nombres ni información privada. Esta versión es una demostración y no almacena propuestas.</p>
+        </form>
+        <div class="idea-note"><span>♧</span> Las grandes ideas también nacen de tus propuestas.</div>
+      </div>
+    </section>
+
+    <section class="commitment-section section-wrap" id="compromiso">
+      <div class="section-intro">
+        <p class="eyebrow">NUESTRO COMPROMISO</p>
+        <h2>Juntos hacemos<br>la diferencia</h2>
+        <p>Cada uno de nosotros puede aportar para crear un ambiente escolar más sano, seguro y respetuoso. ¿Te unes?</p>
+        <button class="button button-primary" id="pledgeButton">Me comprometo <span>♡</span></button>
+        <p class="pledge-message" id="pledgeMessage" role="status"></p>
+      </div>
+      <article class="pledge-card"><span class="pledge-icon peach">♡</span><h3>Respeta</h3><p>Las diferencias nos enriquecen.</p></article>
+      <article class="pledge-card"><span class="pledge-icon pink">♡</span><h3>Escucha</h3><p>Todos tenemos algo que decir.</p></article>
+      <article class="pledge-card"><span class="pledge-icon blue">♧</span><h3>Incluye</h3><p>Nadie sobra, todos importamos.</p></article>
+      <article class="pledge-card"><span class="pledge-icon green">✿</span><h3>Actúa</h3><p>Las pequeñas acciones también cuentan.</p></article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand footer-brand" href="#inicio"><span class="brand-mark"><svg viewBox="0 0 48 48"><circle cx="16" cy="12" r="7"/><circle cx="32" cy="12" r="7"/><path d="M24 43C10 34 5 27 9 21c4-6 11-3 15 2 4-5 11-8 15-2 4 6-1 13-15 22Z"/></svg></span><span>Entre<br>nosotros</span></a>
+    <p>El respeto también se construye en línea.</p>
+    <a class="back-top" href="#inicio">Volver arriba ↑</a>
+    <span class="hashtag">#EntreNosotros</span>
+    <small>Proyecto educativo · Convivencia escolar</small>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
