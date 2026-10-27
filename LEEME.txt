@@ -1,0 +1,22 @@
+ENTRE NOSOTROS — página web educativa e interactiva
+
+Para abrir:
+1. Descomprime el ZIP.
+2. Abre la carpeta `entre_nosotros_interactiva_v2`.
+3. Abre `index.html` en tu navegador.
+
+Incluye:
+- Diseño adaptable para computador y celular.
+- Estética inmersiva con profundidad, órbitas y animaciones CSS.
+- Casos interactivos sobre convivencia.
+- Tarjetas desplegables sobre derechos humanos.
+- Minijuego “¿Publico o pauso?” con 6 retos.
+- Trivia de 8 preguntas.
+- Juego para relacionar situaciones con valores.
+- Encuesta de 8 preguntas.
+- Compromiso personal.
+- Puntos y progreso guardados en el navegador.
+
+IMPORTANTE:
+Esta versión funciona como página estática. La encuesta se responde en el navegador y no envía las respuestas a una base de datos central. Si necesitan ver los resultados de todos los estudiantes, hay que conectarla a un formulario o backend. No pedir nombres ni datos personales innecesarios.
+La fuente externa puede necesitar internet; la página seguirá funcionando con fuentes alternativas si no hay conexión.
