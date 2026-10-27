@@ -1,0 +1,29 @@
+ENTRE NOSOTROS — sitio web educativo
+
+ARCHIVOS
+- index.html: contenido y estructura.
+- styles.css: diseño adaptable a computador, tableta y celular.
+- script.js: menú móvil, actividad interactiva, encuesta de demostración y compromiso.
+
+CÓMO ABRIR
+1. Descarga y descomprime entre_nosotros_web.zip.
+2. Abre index.html en un navegador moderno.
+3. Necesitas conexión a internet para cargar las fotografías de Unsplash y las fuentes de Google Fonts.
+
+IMPORTANTE
+La encuesta y el formulario de propuestas son demostraciones de front-end: no guardan ni envían respuestas a un servidor. Para recopilar respuestas reales se necesita configurar un servicio/backend y explicar a los usuarios cómo se tratarán sus datos.
+Las imágenes se cargan desde URLs de Unsplash, por lo que necesitan conexión a internet.
+
+
+CONFIGURAR SUPABASE PARA GUARDAR LA ENCUESTA
+1. En Supabase, abre SQL Editor, pega el contenido de setup-supabase.sql y pulsa Run.
+2. Abre script.js y reemplaza PEGA_AQUI_TU_PROJECT_URL por la Project URL, por ejemplo https://tu-proyecto.supabase.co (sin /rest/v1/).
+3. Reemplaza PEGA_AQUI_TU_PUBLISHABLE_KEY por la clave que comienza por sb_publishable_. Nunca uses una Secret key ni service_role en el navegador.
+4. Guarda los cambios y abre la página con conexión a internet. Envía una respuesta de prueba.
+5. En Supabase, abre Table Editor > encuestas para ver las respuestas guardadas.
+
+SEGURIDAD Y PRIVACIDAD
+- La tabla permite insertar respuestas anónimas, pero no permite que los visitantes lean la tabla desde el navegador. Consulta los resultados desde el panel de Supabase.
+- La encuesta no pide nombres ni datos personales. Avisa a los participantes que las respuestas se almacenan para el proyecto escolar.
+- El formulario de propuestas sigue siendo una demostración y NO guarda propuestas.
+- No publiques contraseñas de base de datos, Secret keys ni service_role.
