@@ -1,83 +1,76 @@
-// ==========================================
-// CONFIGURACIÓN DE SUPABASE
-// ==========================================
 const SUPABASE_URL = "https://rhsfeefsutzwprhpemve.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_hLrOBXju6U4IZTrsFdjOrA_rUn4IieF";
-// ==========================================
-// ENCUESTA: GUARDAR RESPUESTAS
-// ==========================================
-document.addEventListener("DOMContentLoaded", () => {
-  const surveyForm = document.querySelector("#surveyForm");
-  const surveyMessage = document.querySelector("#surveyMessage");
-  if (!surveyForm) {
-    console.error("No se encontró el formulario con id='surveyForm'.");
+
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector("#surveyForm");
+  const message = document.querySelector("#surveyMessage");
+
+  if (!form) {
+    console.error("No se encontro el formulario #surveyForm.");
     return;
   }
-  surveyForm.addEventListener("submit", async (event) => {
+
+  form.addEventListener("submit", async function (event) {
     event.preventDefault();
-    const selected = surveyForm.querySelector(
+
+    const selected = form.querySelector(
       'input[name="respuesta"]:checked'
     );
+
     if (!selected) {
-      if (surveyMessage) {
-        surveyMessage.textContent =
-          "Por favor, selecciona una respuesta.";
+      if (message) {
+        message.textContent = "Selecciona una respuesta.";
       }
       return;
     }
-    const submitButton = surveyForm.querySelector(
+
+    const button = form.querySelector(
       'button[type="submit"], input[type="submit"]'
     );
-    if (submitButton) {
-      submitButton.disabled = true;
-    }
-    if (surveyMessage) {
-      surveyMessage.textContent = "Guardando tu respuesta...";
-    }
+
+    if (button) button.disabled = true;
+    if (message) message.textContent = "Guardando respuesta...";
+
     try {
-    const response = await fetch(
-        SUPABASE_URL + "/rest/v1/encuestas",
-        {
-          method: "POST",
-          headers: {
-            "apikey": SUPABASE_PUBLISHABLE_KEY,
-            "Authorization": "Bearer " + SUPABASE_PUBLISHABLE_KEY,
-            "Content-Type": "application/json",
-            "Prefer": "return=minimal"
-          },
-          body: JSON.stringify({
-            respuesta: selected.value
-          })
-        }
-      );
+      const endpoint = SUPABASE_URL + "/rest/v1/encuestas";
+
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "apikey": SUPABASE_PUBLISHABLE_KEY,
+          "Authorization": "Bearer " + SUPABASE_PUBLISHABLE_KEY,
+          "Content-Type": "application/json",
+          "Prefer": "return=minimal"
+        },
+        body: JSON.stringify({
+          respuesta: selected.value
+        })
+      });
+
       if (!response.ok) {
-        const errorDetails = await response.text();
-        console.error(
-          "Error de Supabase:",
-          response.status,
-          errorDetails
-        );
-        if (surveyMessage) {
-          surveyMessage.textContent =
-            "No se pudo guardar la respuesta. Revisa la configuración de Supabase.";
+        const details = await response.text();
+        console.error("Supabase:", response.status, details);
+
+        if (message) {
+          message.textContent = "Error al guardar. Revisa Console.";
         }
         return;
       }
-      if (surveyMessage) {
-        surveyMessage.textContent =
-          "¡Gracias! Tu respuesta se guardó correctamente.";
+
+      if (message) {
+        message.textContent = "Respuesta guardada correctamente.";
       }
-      surveyForm.reset();
+
+      form.reset();
+
     } catch (error) {
-      console.error("Error de conexión:", error);
-      if (surveyMessage) {
-        surveyMessage.textContent =
-          "Error de conexión. Inténtalo de nuevo.";
+      console.error("Error de conexion:", error);
+
+      if (message) {
+        message.textContent = "Error de conexion con Supabase.";
       }
     } finally {
-      if (submitButton) {
-        submitButton.disabled = false;
-      }
+      if (button) button.disabled = false;
     }
   });
 });
