@@ -35,13 +35,13 @@ document.addEventListener("DOMContentLoaded", () => {
       surveyMessage.textContent = "Guardando tu respuesta...";
     }
     try {
-      const response = await fetch(
-        ${SUPABASE_URL}/rest/v1/encuestas,
+    const response = await fetch(
+        SUPABASE_URL + "/rest/v1/encuestas",
         {
           method: "POST",
           headers: {
             "apikey": SUPABASE_PUBLISHABLE_KEY,
-            "Authorization": Bearer ${SUPABASE_PUBLISHABLE_KEY},
+            "Authorization": "Bearer " + SUPABASE_PUBLISHABLE_KEY,
             "Content-Type": "application/json",
             "Prefer": "return=minimal"
           },
